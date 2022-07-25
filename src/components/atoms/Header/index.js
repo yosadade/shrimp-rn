@@ -22,7 +22,7 @@ const Header = ({title, onPress}) => {
 const styles = StyleSheet.create({
   container: {
     padding: 18,
-    paddingLeft: 24,
+    paddingLeft: 12,
     backgroundColor: colors.blue,
     flexDirection: 'row',
     alignItems: 'center',

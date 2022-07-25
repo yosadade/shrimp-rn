@@ -1,6 +1,7 @@
+/* eslint-disable react-native/no-inline-styles */
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
-import {Header, TabBar} from '../../components';
+import {Header} from '../../components';
 import {colors} from '../../utils';
 import {Disease, News, Price} from '..';
 
@@ -27,6 +28,9 @@ const Home = () => {
     setActive(e);
   };
 
+  const renderContent =
+    active === 2 ? <News /> : active === 3 ? <Disease /> : <Price />;
+
   return (
     <View style={styles.page}>
       <Header title="Jala Media" />
@@ -35,17 +39,26 @@ const Home = () => {
           const {title, id} = item;
           return (
             <TouchableOpacity
-              style={styles.tabBar}
+              style={[
+                styles.tabBar,
+                {
+                  borderBottomColor: active === id ? colors.blue : colors.grey,
+                },
+              ]}
               key={index}
               onPress={() => onHandleTab(id)}>
-              <Text style={[styles.tabBarTitle(id)]}>{title}</Text>
+              <Text
+                style={[
+                  styles.tabBarTitle,
+                  {color: active === id ? colors.blue : null},
+                ]}>
+                {title}
+              </Text>
             </TouchableOpacity>
           );
         })}
       </View>
-      <View>
-        {active === 2 ? <News /> : active === 3 ? <Disease /> : <Price />}
-      </View>
+      <View>{renderContent}</View>
     </View>
   );
 };
@@ -67,13 +80,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     borderBottomWidth: 4,
-    borderBottomColor: colors.blue,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  tabBarTitle: (id, index, active) => ({
+  tabBarTitle: () => ({
     fontSize: 14,
     fontWeight: '600',
-    color: index === active ? colors.blue : colors.white,
   }),
 });
