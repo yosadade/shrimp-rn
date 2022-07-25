@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <View style={styles.page}>
-      <Header />
+      <Header title="Jala Media" />
       <View style={styles.container}>
         {datas.map((item, index) => {
           const {title, id} = item;

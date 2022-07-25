@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   tabBarTitle: {
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: 'bold',
     color: colors.blue,
   },
 });

@@ -1,21 +1,34 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Gap} from '..';
+import {ICShareWhite} from '../../../assets';
 import {Button} from '../../../components';
 import {colors} from '../../../utils';
 
-const Header = () => {
+const Header = ({title, onPress}) => {
   return (
     <View style={styles.container}>
-      <Button />
-      <Text style={styles.title}>Jala Media</Text>
+      <View style={styles.wrapperTitle}>
+        <Button onPress={onPress} />
+        <Gap width={12} />
+        <Text style={styles.title}>{title}</Text>
+      </View>
+      <TouchableOpacity>
+        <ICShareWhite />
+      </TouchableOpacity>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     padding: 18,
-    paddingLeft: 12,
+    paddingLeft: 24,
     backgroundColor: colors.blue,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  wrapperTitle: {
     flexDirection: 'row',
     alignItems: 'center',
   },
