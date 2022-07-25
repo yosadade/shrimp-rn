@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Home, Disease, News, NewsDetail, Price} from '../pages';
+import {Home, Disease, DiseaseDetail, News, NewsDetail, Price} from '../pages';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +17,7 @@ const Router = () => {
       <Stack.Screen name="News" component={News} />
       <Stack.Screen name="NewsDetail" component={NewsDetail} />
       <Stack.Screen name="Disease" component={Disease} />
+      <Stack.Screen name="DiseaseDetail" component={DiseaseDetail} />
     </Stack.Navigator>
   );
 };

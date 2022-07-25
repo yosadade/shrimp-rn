@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  tabBarTitle: () => ({
+  tabBarTitle: {
     fontSize: 14,
     fontWeight: '600',
-  }),
+  },
 });
