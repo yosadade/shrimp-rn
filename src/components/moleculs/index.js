@@ -1,3 +1,4 @@
 import TabBar from './TabBar';
+import PriceCard from './PriceCard';
 
-export {TabBar};
+export {TabBar, PriceCard};
