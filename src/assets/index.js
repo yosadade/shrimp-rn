@@ -7,6 +7,7 @@ import ICFacebook from './facebook-f.svg';
 import ICWhatsapp from './whatsapp.svg';
 import ICTwitter from './twitter.svg';
 import ICMesssenger from './facebook-messenger.svg';
+import ICSearch from './search.svg';
 
 export {
   ICBack,
@@ -18,4 +19,5 @@ export {
   ICWhatsapp,
   ICMesssenger,
   ICTwitter,
+  ICSearch,
 };

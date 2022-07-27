@@ -1,31 +1,45 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import moment from 'moment';
+import 'moment/locale/id'; // without this line it didn't work
 import {colors} from '../../../utils';
 import {Gap, Button, Badge} from '../..';
 
-const PriceCard = ({type}) => {
+const PriceCard = ({
+  avatar,
+  verified,
+  date,
+  company,
+  province,
+  regency,
+  price,
+}) => {
+  const dateFormat = moment(date).locale('id').format('LL');
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <View style={styles.wrapperAvatar}>
-          <Image source={null} style={styles.avatar} />
+          <Image
+            source={{uri: `https://app.jala.tech/storage/${avatar}`}}
+            style={styles.avatar}
+          />
           <View>
             <Text style={styles.titleBlue}>Supplier</Text>
-            <Text>Mina Udang Barokah</Text>
+            <Text>{company}</Text>
           </View>
         </View>
-        {type === 'verified' ? <Badge type="verified" /> : <Badge />}
+        {verified ? <Badge type="verified" /> : <Badge />}
       </View>
       <Gap height={8} />
-      <Text style={styles.titleBlue}>16 Januari 2020</Text>
+      <Text style={styles.titleBlue}>{dateFormat}</Text>
       <Gap height={8} />
-      <Text>Nusa Tenggara Timur</Text>
-      <Text style={styles.titleBlack}>Sumba</Text>
+      <Text style={styles.titleProvince}>{province}</Text>
+      <Text style={styles.titleBlack}>{regency}</Text>
       <Gap height={8} />
       <View style={styles.wrapperBottom}>
         <View>
           <Text style={styles.titleBlue}>size 100</Text>
-          <Text style={styles.titleBlack}>IDR 56.500</Text>
+          <Text style={styles.titleBlack}>IDR {price}</Text>
         </View>
         <Button
           type="primary"
@@ -65,11 +79,16 @@ const styles = StyleSheet.create({
   titleBlue: {
     fontSize: 14,
     fontWeight: '300',
+    textTransform: 'capitalize',
     color: colors.blue,
   },
   titleBlack: {
     fontSize: 18,
     fontWeight: 'bold',
+    textTransform: 'capitalize',
+  },
+  titleProvince: {
+    textTransform: 'capitalize',
   },
   wrapperBottom: {
     flexDirection: 'row',

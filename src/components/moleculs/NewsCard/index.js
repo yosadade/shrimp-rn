@@ -4,7 +4,7 @@ import {colors} from '../../../utils';
 import {Gap} from '../..';
 import {ICShare} from '../../../assets';
 
-const NewsCard = ({onPress}) => {
+const NewsCard = ({onPress, title, subTitle, date}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.6}
@@ -12,17 +12,12 @@ const NewsCard = ({onPress}) => {
       onPress={onPress}>
       <Image source={null} style={styles.image} />
       <View style={styles.content}>
-        <Text style={styles.title}>
-          Baruna: Alat Kualitas Air Pintar Handal dan Praktis
-        </Text>
+        <Text style={styles.title}>{title}</Text>
         <Gap height={8} />
-        <Text>
-          Tahun 2019 telah berlalu, kini tahun 2020 telah measuki minggu ketiga,
-          memasuki tahun ...
-        </Text>
+        <Text>{subTitle}</Text>
         <Gap height={8} />
         <View style={styles.wrapper}>
-          <Text>30 April 2020</Text>
+          <Text>{date}</Text>
           <ICShare />
         </View>
       </View>

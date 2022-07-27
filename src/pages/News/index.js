@@ -11,10 +11,34 @@ const News = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Kabar Terbaru</Text>
         <Gap height={12} />
-        <NewsCard onPress={() => navigation.navigate('NewsDetail')} />
-        <NewsCard onPress={() => navigation.navigate('NewsDetail')} />
-        <NewsCard onPress={() => navigation.navigate('NewsDetail')} />
-        <NewsCard onPress={() => navigation.navigate('NewsDetail')} />
+        <NewsCard
+          title="Baruna: Alat Kualitas Air Pintar Handal dan Praktis"
+          subTitle="Tahun 2019 telah berlalu, kini tahun 2020 telah measuki minggu ketiga,
+          memasuki tahun ..."
+          date="30 April 2020"
+          onPress={() => navigation.navigate('NewsDetail')}
+        />
+        <NewsCard
+          title="Baruna: Alat Kualitas Air Pintar Handal dan Praktis"
+          subTitle="Tahun 2019 telah berlalu, kini tahun 2020 telah measuki minggu ketiga,
+          memasuki tahun ..."
+          date="30 April 2020"
+          onPress={() => navigation.navigate('NewsDetail')}
+        />
+        <NewsCard
+          title="Baruna: Alat Kualitas Air Pintar Handal dan Praktis"
+          subTitle="Tahun 2019 telah berlalu, kini tahun 2020 telah measuki minggu ketiga,
+          memasuki tahun ..."
+          date="30 April 2020"
+          onPress={() => navigation.navigate('NewsDetail')}
+        />
+        <NewsCard
+          title="Baruna: Alat Kualitas Air Pintar Handal dan Praktis"
+          subTitle="Tahun 2019 telah berlalu, kini tahun 2020 telah measuki minggu ketiga,
+          memasuki tahun ..."
+          date="30 April 2020"
+          onPress={() => navigation.navigate('NewsDetail')}
+        />
         <Gap height={150} />
       </ScrollView>
     </View>

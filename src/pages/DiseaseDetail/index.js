@@ -1,7 +1,14 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Header, Gap, Button} from '../../components';
+import {Header, Gap, Button, SearchBar, Label} from '../../components';
 import {colors} from '../../utils';
 import {ICFacebook, ICMesssenger, ICTwitter, ICWhatsapp} from '../../assets';
 
@@ -9,54 +16,124 @@ const DiseaseDetail = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.page}>
-      <Header title="Info Penyakit" onPress={() => navigation.goBack()} />
-      <View style={styles.content}>
-        <View style={styles.wrapper}>
-          <Text style={styles.title}>
-            Tambak Udang Berpotensi Mencemari Lingkungan
-          </Text>
-          <Gap height={16} />
-          <View style={styles.wrapperEditor}>
-            <Text style={styles.titleEdior}>Jala</Text>
-            <Gap width={4} />
-            <Text>|</Text>
-            <Gap width={4} />
-            <Text>Wildan Gayuh Zulfikar</Text>
-          </View>
-          <Text>30 Januari 2020</Text>
-          <Gap height={16} />
-          <View style={styles.wrapperSosmed}>
-            <View style={styles.wrapperShares}>
-              <Text style={styles.totalShares}>210</Text>
-              <Text style={styles.titleShares}>Shares</Text>
-            </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Header title="Info Penyakit" onPress={() => navigation.goBack()} />
+        <Gap height={16} />
+        <SearchBar />
+        <Gap height={6} />
+        <TouchableOpacity style={styles.btnSubmit}>
+          <Text style={styles.titleBtn}>Lihat Semua Penyakit</Text>
+        </TouchableOpacity>
+        <Gap height={32} />
+        <Text style={styles.titleBlue}>Penyakit paling dicari</Text>
+        <Gap height={16} />
+        <View style={styles.wrapperSelectDisease}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Button
-              type="sosmed"
-              bgColor={colors.green}
-              icon={<ICWhatsapp />}
-            />
-            <Button
-              type="sosmed"
+              type="primary"
+              title="Bintik Hitam"
               bgColor={colors.blue2}
-              icon={<ICFacebook />}
+              color={colors.white}
+              mr={6}
             />
-            <Button type="sosmed" bgColor={colors.blue3} icon={<ICTwitter />} />
             <Button
-              type="sosmed"
-              bgColor={colors.blue4}
-              icon={<ICMesssenger />}
+              type="primary"
+              title="EHP/HPM"
+              bgColor={colors.blue2}
+              color={colors.white}
+              mr={6}
             />
-          </View>
-          <Gap height={16} />
+            <Button
+              type="primary"
+              title="WFD"
+              bgColor={colors.blue2}
+              color={colors.white}
+              mr={6}
+            />
+            <Button
+              type="primary"
+              title="YHD"
+              bgColor={colors.blue2}
+              color={colors.white}
+              mr={6}
+            />
+            <Button
+              type="primary"
+              title="Insang"
+              bgColor={colors.blue2}
+              color={colors.white}
+              mr={6}
+            />
+            <Button
+              type="primary"
+              title="Bintik Hitam"
+              bgColor={colors.blue2}
+              color={colors.white}
+              mr={6}
+            />
+          </ScrollView>
         </View>
-        <Image source={null} style={styles.image} />
-        <Gap height={24} />
-        <Text style={styles.titleContent}>
-          Lorem ipsum, atau ringkasnya lipsum, adalah teks standar yang
-          ditempatkan untuk mendemostrasikan elemen grafis atau presentasi
-          visual seperti font, tipografi, dan tata letak
-        </Text>
-      </View>
+        <Gap height={32} />
+        <View style={styles.content}>
+          <View style={styles.wrapper}>
+            <Text style={styles.title}>Black Spot Disease</Text>
+            <Text style={styles.subTitle}>(Bintik Hitam)</Text>
+            <Gap height={16} />
+            <View style={styles.wrapperEditor}>
+              <Text>12 Juni 2019</Text>
+              <Gap width={4} />
+              <Text>|</Text>
+              <Gap width={4} />
+              <Text>JALA</Text>
+            </View>
+            <Gap height={16} />
+            <View style={styles.wrapperSosmed}>
+              <View style={styles.wrapperShares}>
+                <Text style={styles.totalShares}>2</Text>
+                <Text style={styles.titleShares}>Shares</Text>
+              </View>
+              <Button
+                type="sosmed"
+                bgColor={colors.green}
+                icon={<ICWhatsapp />}
+              />
+              <Button
+                type="sosmed"
+                bgColor={colors.blue2}
+                icon={<ICFacebook />}
+              />
+              <Button
+                type="sosmed"
+                bgColor={colors.blue3}
+                icon={<ICTwitter />}
+              />
+              <Button
+                type="sosmed"
+                bgColor={colors.blue4}
+                icon={<ICMesssenger />}
+              />
+            </View>
+          </View>
+        </View>
+        <View style={styles.content}>
+          <View style={styles.wrapper}>
+            <Text style={styles.titleBlack}>Indikasi Penyakit</Text>
+            <Label
+              title="Nama"
+              subtitle="Black Spot Disease atau bintik hitam pada udang"
+            />
+            <Label
+              title="Tanda-tanda klinis"
+              subtitle="Black Spot Disease atau bintik hitam pada udang"
+            />
+            <Label
+              title="Nama"
+              subtitle="Black Spot Disease atau bintik hitam pada udang"
+            />
+            <Image source={null} style={styles.image} />
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -69,9 +146,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.grey,
   },
   content: {
-    flex: 1,
     margin: 12,
-    marginBottom: 0,
+    marginTop: 0,
     paddingVertical: 12,
     borderRadius: 6,
     borderWidth: 1,
@@ -84,6 +160,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    fontStyle: 'italic',
+    color: colors.blue,
+  },
+  subTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.blue,
   },
   wrapperEditor: {
     flexDirection: 'row',
@@ -109,13 +192,36 @@ const styles = StyleSheet.create({
   titleShares: {
     fontWeight: 'bold',
   },
-  image: {
-    width: '100%',
-    height: 170,
-    backgroundColor: colors.blue,
-  },
   titleContent: {
     fontSize: 18,
     paddingHorizontal: 24,
+  },
+  btnSubmit: {
+    height: 40,
+    marginHorizontal: 12,
+    backgroundColor: colors.blue,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titleBtn: {
+    color: colors.white,
+  },
+  titleBlack: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  titleBlue: {
+    fontSize: 18,
+    marginLeft: 12,
+    fontWeight: 'bold',
+    color: colors.blue,
+  },
+  image: {
+    width: '100%',
+    height: 170,
+    backgroundColor: colors.grey,
+  },
+  wrapperSelectDisease: {
+    flexDirection: 'row',
   },
 });

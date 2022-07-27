@@ -9,12 +9,32 @@ const Disease = () => {
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>Kabar Terbaru</Text>
+        <Text style={styles.title}>Info Penyakit</Text>
         <Gap height={12} />
-        <NewsCard onPress={() => navigation.navigate('DiseaseDetail')} />
-        <NewsCard onPress={() => navigation.navigate('DiseaseDetail')} />
-        <NewsCard onPress={() => navigation.navigate('DiseaseDetail')} />
-        <NewsCard onPress={() => navigation.navigate('DiseaseDetail')} />
+        <NewsCard
+          title="Black Spot Disease (Bintik Hitam)"
+          subTitle="Tampak fisik pada udang ialah kerapas berwarna kecoklatan dan adanya bercak hitam pada kerapa..."
+          date="30 April 2020"
+          onPress={() => navigation.navigate('DiseaseDetail')}
+        />
+        <NewsCard
+          title="Black Spot Disease (Bintik Hitam)"
+          subTitle="Tampak fisik pada udang ialah kerapas berwarna kecoklatan dan adanya bercak hitam pada kerapa..."
+          date="30 April 2020"
+          onPress={() => navigation.navigate('DiseaseDetail')}
+        />
+        <NewsCard
+          title="Black Spot Disease (Bintik Hitam)"
+          subTitle="Tampak fisik pada udang ialah kerapas berwarna kecoklatan dan adanya bercak hitam pada kerapa..."
+          date="30 April 2020"
+          onPress={() => navigation.navigate('DiseaseDetail')}
+        />
+        <NewsCard
+          title="Black Spot Disease (Bintik Hitam)"
+          subTitle="Tampak fisik pada udang ialah kerapas berwarna kecoklatan dan adanya bercak hitam pada kerapa..."
+          date="30 April 2020"
+          onPress={() => navigation.navigate('DiseaseDetail')}
+        />
         <Gap height={150} />
       </ScrollView>
     </View>
