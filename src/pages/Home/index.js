@@ -3,7 +3,9 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {Header} from '../../components';
 import {colors} from '../../utils';
-import {Disease, News, Price} from '../';
+import Disease from '../Disease';
+import News from '../News';
+import Price from '../Price';
 
 const datas = [
   {

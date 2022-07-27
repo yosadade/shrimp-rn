@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Gap} from '../..';
+import Gap from '../../atoms/Gap';
 
 const PriceList = ({size, price}) => {
   return (

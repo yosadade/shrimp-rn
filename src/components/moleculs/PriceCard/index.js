@@ -3,7 +3,9 @@ import React from 'react';
 import moment from 'moment';
 import 'moment/locale/id';
 import {colors} from '../../../utils';
-import {Gap, Button, Badge} from '../..';
+import Gap from '../../atoms/Gap';
+import Button from '../../atoms/Button';
+import Badge from '../../atoms/Badge';
 
 const PriceCard = ({
   avatar,

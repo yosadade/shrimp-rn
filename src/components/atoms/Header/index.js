@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Gap} from '..';
+import Gap from '../Gap';
 import {ICShareWhite} from '../../../assets';
-import {Button} from '../../../components';
+import Button from '../Button';
 import {colors} from '../../../utils';
 
 const Header = ({title, onPress, onShare}) => {

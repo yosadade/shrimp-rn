@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import 'moment/locale/id';
 import {colors} from '../../../utils';
-import {Gap} from '../..';
+import Gap from '../../atoms/Gap';
 import {ICShare} from '../../../assets';
 
 const NewsCard = ({onPress, title, image, subTitle, date, onShare}) => {
