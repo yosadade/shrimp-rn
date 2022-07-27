@@ -30,14 +30,14 @@ const Price = () => {
         <Text style={styles.title}>Harga Terbaru</Text>
         <Gap height={12} />
         {data?.map((item, idx) => {
-          const {id, created_at, creator, region, size_100} = item;
+          const {id, creator, region, size_100} = item;
           return (
             <PriceCard
               key={idx}
               verified={creator.buyer}
-              company={creator.company}
+              company={creator.name}
               avatar={creator.avatar}
-              date={created_at}
+              date={creator.date}
               province={region.province_name}
               regency={region.regency_name}
               price={size_100}

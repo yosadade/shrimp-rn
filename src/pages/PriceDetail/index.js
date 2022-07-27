@@ -18,10 +18,11 @@ import {API_HOST} from '../../config/API';
 
 const PriceDetail = ({route}) => {
   const [data, setData] = useState({});
+  console.log(data.remark);
 
   const id = route.params;
   const navigation = useNavigation();
-  const dateFormat = moment(data?.created_at).locale('id').format('LL');
+  const dateFormat = moment(data?.creator?.date).locale('id').format('LL');
 
   const handlePress = useCallback(async () => {
     await Linking.openURL(`tel:${data?.creator?.phone}`);
@@ -33,7 +34,6 @@ const PriceDetail = ({route}) => {
     )
       .then(res => {
         const fetchData = res.data.data;
-        console.log(fetchData);
         setData(fetchData);
       })
       .catch(err => {
@@ -46,8 +46,8 @@ const PriceDetail = ({route}) => {
       <Header title="Harga Udang" onPress={() => navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <Text style={styles.title}>Nusa Tenggara Barat</Text>
-          <Text style={styles.subTitle}>Sumba</Text>
+          <Text style={styles.title}>{data?.region?.province_name}</Text>
+          <Text style={styles.subTitle}>{data?.region?.regency_name}</Text>
         </View>
         <Gap height={3} bgColor={colors.grey} />
         <View style={styles.wrapper}>
@@ -58,12 +58,14 @@ const PriceDetail = ({route}) => {
           <Gap height={12} />
           <View style={styles.wrapperAvatar}>
             <Image
-              source={{uri: `https://app.jala.tech/storage/${null}`}}
+              source={{
+                uri: `https://app.jala.tech/storage/${data?.creator?.avatar}`,
+              }}
               style={styles.avatar}
             />
             <View>
               <Text style={styles.titleBlue}>Supplier</Text>
-              <Text style={styles.titleCompany}>Mina Udang Barokah</Text>
+              <Text style={styles.titleCompany}>{data?.creator?.name}</Text>
             </View>
           </View>
           <Gap height={12} />
@@ -82,29 +84,29 @@ const PriceDetail = ({route}) => {
           </View>
           <Gap height={18} />
           <Text style={styles.title}>Daftar Harga</Text>
-          <PriceList size={20} price={97000} />
-          <PriceList size={30} price={97000} />
-          <PriceList size={40} price={97000} />
-          <PriceList size={50} price={97000} />
-          <PriceList size={60} price={97000} />
-          <PriceList size={70} price={97000} />
-          <PriceList size={80} price={97000} />
-          <PriceList size={80} price={97000} />
-          <PriceList size={80} price={97000} />
-          <PriceList size={80} price={97000} />
-          <PriceList size={80} price={97000} />
-          <PriceList size={80} price={97000} />
-          <PriceList size={80} price={97000} />
-          <PriceList size={80} price={97000} />
-          <PriceList size={80} price={97000} />
+          <PriceList size="20" price={data?.size_20} />
+          <PriceList size="30" price={data?.size_30} />
+          <PriceList size="40" price={data?.size_40} />
+          <PriceList size="50" price={data?.size_50} />
+          <PriceList size="60" price={data?.size_60} />
+          <PriceList size="70" price={data?.size_70} />
+          <PriceList size="80" price={data?.size_80} />
+          <PriceList size="90" price={data?.size_90} />
+          <PriceList size="100" price={data?.size_100} />
+          <PriceList size="110" price={data?.size_110} />
+          <PriceList size="120" price={data?.size_120} />
+          <PriceList size="130" price={data?.size_130} />
+          <PriceList size="140" price={data?.size_140} />
+          <PriceList size="150" price={data?.size_150} />
+          <PriceList size="160" price={data?.size_160} />
+          <PriceList size="170" price={data?.size_170} />
+          <PriceList size="180" price={data?.size_180} />
+          <PriceList size="190" price={data?.size_190} />
+          <PriceList size="200" price={data?.size_200} />
           <Gap height={18} />
           <Text style={styles.title}>Catatan</Text>
           <Gap height={12} />
-          <Text>
-            LLorem ipsum, atau ringkasnya lipsum, adalah teks standar yang
-            ditempatkan untuk mendemostrasikan elemen grafis atau presentasi
-            visual seperti font,
-          </Text>
+          <Text>{data?.remark}</Text>
           <Gap height={12} />
         </View>
       </ScrollView>
@@ -141,10 +143,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
+    textTransform: 'capitalize',
   },
   subTitle: {
     fontSize: 18,
     fontWeight: 'bold',
+    textTransform: 'capitalize',
   },
   titleCompany: {
     fontSize: 16,
