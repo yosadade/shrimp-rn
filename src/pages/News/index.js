@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, Text, View, Alert} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, Alert, Share} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Axios from 'axios';
@@ -10,21 +10,19 @@ const News = () => {
   const [data, setData] = useState([]);
   const navigation = useNavigation();
 
-  const onHandleShare = id => {
-    // try {
-    //   const result = Share.share({
-    //     message: `https://app.jala.tech/posts/${id}`,
-    //   });
-    //   if (result.action === Share.sharedAction) {
-    //     if (result.activityType) {
-    //     } else {
-    //     }
-    //   } else if (result.action === Share.dismissedAction) {
-    //   }
-    // } catch (error) {
-    //   Alert.alert(error.message);
-    // }
+  const onShare = id => {
+    const options = {
+      title: `https://app.jala.tech/posts/${id}`,
+      message: `https://app.jala.tech/posts/${id}`,
+      url: `https://app.jala.tech/posts/${id}`,
+    };
+    try {
+      Share.share(options);
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   };
+
   useEffect(() => {
     Axios.get(`${API_HOST.uri}/posts?per_page=15&page=1&with=creator`, {
       headers: {
@@ -46,6 +44,7 @@ const News = () => {
         <Text style={styles.title}>Kabar Terbaru</Text>
         <Gap height={12} />
         {data.map((item, idx) => {
+          console.log(item.id);
           return (
             <NewsCard
               key={idx}
@@ -54,7 +53,7 @@ const News = () => {
               subTitle={item?.excerpt}
               date={item?.updated_at}
               onPress={() => navigation.navigate('NewsDetail', item)}
-              onShare={onHandleShare(item.id)}
+              onShare={() => onShare(item.id)}
             />
           );
         })}

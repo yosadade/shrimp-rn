@@ -21,7 +21,6 @@ const NewsCard = ({onPress, title, image, subTitle, date, onShare}) => {
         <Text style={styles.title}>{title}</Text>
         <Gap height={8} />
         <Text>{subTitle}</Text>
-        {/* <Gap height={8} /> */}
         <View style={styles.wrapper}>
           <Text>{dateFormat}</Text>
           <TouchableOpacity style={styles.btnShare} onPress={onShare}>
@@ -62,6 +61,7 @@ const styles = StyleSheet.create({
   },
   btnShare: {
     paddingHorizontal: 20,
+    paddingRight: 0,
     paddingVertical: 8,
   },
 });

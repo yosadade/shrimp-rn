@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Alert, Share} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Axios from 'axios';
@@ -10,20 +10,17 @@ const Disease = () => {
   const [data, setData] = useState([]);
   const navigation = useNavigation();
 
-  const onHandleShare = id => {
-    // try {
-    //   const result = Share.share({
-    //     message: `https://app.jala.tech/posts/${id}`,
-    //   });
-    //   if (result.action === Share.sharedAction) {
-    //     if (result.activityType) {
-    //     } else {
-    //     }
-    //   } else if (result.action === Share.dismissedAction) {
-    //   }
-    // } catch (error) {
-    //   Alert.alert(error.message);
-    // }
+  const onShare = id => {
+    const options = {
+      title: `https://app.jala.tech/diseases/${id}`,
+      message: `https://app.jala.tech/diseases/${id}`,
+      url: `https://app.jala.tech/diseases/${id}`,
+    };
+    try {
+      Share.share(options);
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   };
 
   useEffect(() => {
@@ -54,7 +51,7 @@ const Disease = () => {
               subTitle={item?.meta_description}
               date={item?.updated_at}
               onPress={() => navigation.navigate('DiseaseDetail', item)}
-              onShare={onHandleShare(item.id)}
+              onShare={() => onShare(item.id)}
             />
           );
         })}
