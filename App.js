@@ -1,9 +1,10 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, LogBox} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Router from './src/routers';
 import {colors} from './src/utils';
 
+LogBox.ignoreAllLogs();
 const App = () => {
   return (
     <NavigationContainer>

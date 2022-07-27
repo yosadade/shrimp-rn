@@ -7,7 +7,7 @@ import {colors} from '../../utils';
 
 const NewsDetail = ({route}) => {
   const navigation = useNavigation();
-  console.log(route.params.id);
+
   const {id} = route.params;
   const onShare = () => {
     // try {

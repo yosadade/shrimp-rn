@@ -18,7 +18,6 @@ import {API_HOST} from '../../config/API';
 
 const PriceDetail = ({route}) => {
   const [data, setData] = useState({});
-  console.log(data.remark);
 
   const id = route.params;
   const navigation = useNavigation();

@@ -24,7 +24,6 @@ const Home = () => {
   const [active, setActive] = useState(1);
 
   const onHandleTab = e => {
-    console.log(e);
     setActive(e);
   };
 

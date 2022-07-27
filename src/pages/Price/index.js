@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
@@ -16,12 +16,11 @@ const Price = () => {
     )
       .then(res => {
         const fetchData = res.data.data;
-        console.log(fetchData[0]);
         setData(fetchData);
       })
       .catch(err => {
         const statusErr = err;
-        console.log(statusErr);
+        Alert.alert(statusErr);
       });
   }, []);
   return (

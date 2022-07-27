@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Axios from 'axios';
@@ -36,17 +36,16 @@ const News = () => {
         setData(fetchData);
       })
       .catch(err => {
-        console.log(err);
+        Alert.alert(err);
       });
   }, []);
-  console.log(data[0]);
+
   return (
     <View style={styles.pages}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Kabar Terbaru</Text>
         <Gap height={12} />
         {data.map((item, idx) => {
-          // console.log(item);
           return (
             <NewsCard
               key={idx}

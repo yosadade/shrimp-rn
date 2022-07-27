@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Axios from 'axios';
@@ -37,7 +37,7 @@ const Disease = () => {
         setData(fetchData);
       })
       .catch(err => {
-        console.log(err);
+        Alert.alert(err);
       });
   }, []);
   return (
@@ -46,7 +46,6 @@ const Disease = () => {
         <Text style={styles.title}>Info Penyakit</Text>
         <Gap height={12} />
         {data.map((item, idx) => {
-          // console.log(item);
           return (
             <NewsCard
               key={idx}
