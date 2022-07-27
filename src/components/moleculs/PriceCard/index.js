@@ -13,6 +13,7 @@ const PriceCard = ({
   province,
   regency,
   price,
+  onPress,
 }) => {
   const dateFormat = moment(date).locale('id').format('LL');
   return (
@@ -46,6 +47,7 @@ const PriceCard = ({
           title="LIHAT DETAIL"
           bgColor={colors.blue}
           color={colors.white}
+          onPress={onPress}
         />
       </View>
     </View>

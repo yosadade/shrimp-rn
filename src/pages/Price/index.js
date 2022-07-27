@@ -1,12 +1,15 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Axios from 'axios';
+import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../utils';
 import {Gap, PriceCard} from '../../components';
 import {API_HOST} from '../../config/API';
 
 const Price = () => {
   const [data, setData] = useState(data);
+  const navigation = useNavigation();
+
   useEffect(() => {
     Axios.get(
       `${API_HOST.uri}/shrimp_prices?per_page=15&page=1&with=region,creator&region_id=`,
@@ -37,7 +40,7 @@ const Price = () => {
               province={item.region.province_name}
               regency={item.region.regency_name}
               price={item.size_100}
-              type="verified"
+              onPress={() => navigation.navigate('PriceDetail', item)}
             />
           );
         })}
