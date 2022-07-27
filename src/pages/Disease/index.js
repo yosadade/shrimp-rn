@@ -1,40 +1,64 @@
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
+import Axios from 'axios';
 import {colors} from '../../utils';
+import {API_HOST} from '../../config';
 import {Gap, NewsCard} from '../../components';
 
 const Disease = () => {
+  const [data, setData] = useState([]);
   const navigation = useNavigation();
+
+  const onHandleShare = id => {
+    // try {
+    //   const result = Share.share({
+    //     message: `https://app.jala.tech/posts/${id}`,
+    //   });
+    //   if (result.action === Share.sharedAction) {
+    //     if (result.activityType) {
+    //     } else {
+    //     }
+    //   } else if (result.action === Share.dismissedAction) {
+    //   }
+    // } catch (error) {
+    //   Alert.alert(error.message);
+    // }
+  };
+
+  useEffect(() => {
+    Axios.get(`${API_HOST.uri}/diseases?per_page=15&page=1`, {
+      headers: {
+        Authorization: API_HOST.authorization,
+      },
+    })
+      .then(res => {
+        const fetchData = res.data.data;
+        setData(fetchData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Info Penyakit</Text>
         <Gap height={12} />
-        <NewsCard
-          title="Black Spot Disease (Bintik Hitam)"
-          subTitle="Tampak fisik pada udang ialah kerapas berwarna kecoklatan dan adanya bercak hitam pada kerapa..."
-          date="30 April 2020"
-          onPress={() => navigation.navigate('DiseaseDetail')}
-        />
-        <NewsCard
-          title="Black Spot Disease (Bintik Hitam)"
-          subTitle="Tampak fisik pada udang ialah kerapas berwarna kecoklatan dan adanya bercak hitam pada kerapa..."
-          date="30 April 2020"
-          onPress={() => navigation.navigate('DiseaseDetail')}
-        />
-        <NewsCard
-          title="Black Spot Disease (Bintik Hitam)"
-          subTitle="Tampak fisik pada udang ialah kerapas berwarna kecoklatan dan adanya bercak hitam pada kerapa..."
-          date="30 April 2020"
-          onPress={() => navigation.navigate('DiseaseDetail')}
-        />
-        <NewsCard
-          title="Black Spot Disease (Bintik Hitam)"
-          subTitle="Tampak fisik pada udang ialah kerapas berwarna kecoklatan dan adanya bercak hitam pada kerapa..."
-          date="30 April 2020"
-          onPress={() => navigation.navigate('DiseaseDetail')}
-        />
+        {data.map((item, idx) => {
+          // console.log(item);
+          return (
+            <NewsCard
+              key={idx}
+              title={`${item?.full_name} (${item?.short_name})`}
+              image={item?.image}
+              subTitle={item?.meta_description}
+              date={item?.updated_at}
+              onPress={() => navigation.navigate('DiseaseDetail', item)}
+              onShare={onHandleShare(item.id)}
+            />
+          );
+        })}
         <Gap height={150} />
       </ScrollView>
     </View>

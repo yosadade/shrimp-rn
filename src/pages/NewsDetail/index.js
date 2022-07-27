@@ -1,20 +1,39 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Header, Gap, Button} from '../../components';
+import {WebView} from 'react-native-webview';
+import {Header} from '../../components';
 import {colors} from '../../utils';
-import {ICFacebook, ICMesssenger, ICTwitter, ICWhatsapp} from '../../assets';
 
-const NewsDetail = () => {
+const NewsDetail = ({route}) => {
   const navigation = useNavigation();
+  console.log(route.params.id);
+  const {id} = route.params;
+  const onShare = () => {
+    // try {
+    //   const result = Share.share({
+    //     message: `https://app.jala.tech/posts/${id}`,
+    //   });
+    //   if (result.action === Share.sharedAction) {
+    //     if (result.activityType) {
+    //     } else {
+    //     }
+    //   } else if (result.action === Share.dismissedAction) {
+    //   }
+    // } catch (error) {
+    //   Alert.alert(error.message);
+    // }
+  };
   return (
     <View style={styles.page}>
-      <Header title="Kabar Udang" onPress={() => navigation.goBack()} />
-      <View style={styles.content}>
+      <Header
+        title="Kabar Udang"
+        onPress={() => navigation.goBack()}
+        onShare={onShare}
+      />
+      {/* <View style={styles.content}>
         <View style={styles.wrapper}>
-          <Text style={styles.title}>
-            Tambak Udang Berpotensi Mencemari Lingkungan
-          </Text>
+          <Text style={styles.title}>{title}</Text>
           <Gap height={16} />
           <View style={styles.wrapperEditor}>
             <Text style={styles.titleEdior}>Jala</Text>
@@ -48,15 +67,20 @@ const NewsDetail = () => {
             />
           </View>
           <Gap height={16} />
-        </View>
-        <Image source={null} style={styles.image} />
+        </View> */}
+      <WebView
+        source={{
+          uri: `https://app.jala.tech/web_view/posts/${id}`,
+        }}
+      />
+      {/* <Image source={null} style={styles.image} />
         <Gap height={24} />
         <Text style={styles.titleContent}>
           Lorem ipsum, atau ringkasnya lipsum, adalah teks standar yang
           ditempatkan untuk mendemostrasikan elemen grafis atau presentasi
           visual seperti font, tipografi, dan tata letak
-        </Text>
-      </View>
+        </Text> */}
+      {/* </View> */}
     </View>
   );
 };

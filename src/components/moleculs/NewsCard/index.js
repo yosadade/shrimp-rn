@@ -1,24 +1,32 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
+import moment from 'moment';
+import 'moment/locale/id';
 import {colors} from '../../../utils';
 import {Gap} from '../..';
 import {ICShare} from '../../../assets';
 
-const NewsCard = ({onPress, title, subTitle, date}) => {
+const NewsCard = ({onPress, title, image, subTitle, date, onShare}) => {
+  const dateFormat = moment(date).locale('id').format('LL');
   return (
     <TouchableOpacity
       activeOpacity={0.6}
       style={styles.container}
       onPress={onPress}>
-      <Image source={null} style={styles.image} />
+      <Image
+        source={{uri: `https://app.jala.tech/storage/${image}`}}
+        style={styles.image}
+      />
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
         <Gap height={8} />
         <Text>{subTitle}</Text>
-        <Gap height={8} />
+        {/* <Gap height={8} /> */}
         <View style={styles.wrapper}>
-          <Text>{date}</Text>
-          <ICShare />
+          <Text>{dateFormat}</Text>
+          <TouchableOpacity style={styles.btnShare} onPress={onShare}>
+            <ICShare />
+          </TouchableOpacity>
         </View>
       </View>
     </TouchableOpacity>
@@ -51,5 +59,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  btnShare: {
+    paddingHorizontal: 20,
+    paddingVertical: 8,
   },
 });

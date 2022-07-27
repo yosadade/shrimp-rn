@@ -5,7 +5,7 @@ import {ICShareWhite} from '../../../assets';
 import {Button} from '../../../components';
 import {colors} from '../../../utils';
 
-const Header = ({title, onPress}) => {
+const Header = ({title, onPress, onShare}) => {
   return (
     <View style={styles.container}>
       <View style={styles.wrapperTitle}>
@@ -13,7 +13,7 @@ const Header = ({title, onPress}) => {
         <Gap width={12} />
         <Text style={styles.title}>{title}</Text>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onShare}>
         <ICShareWhite />
       </TouchableOpacity>
     </View>
