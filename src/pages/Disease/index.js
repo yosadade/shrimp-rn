@@ -5,6 +5,7 @@ import Axios from 'axios';
 import {colors} from '../../utils';
 import {API_HOST} from '../../config';
 import {Gap, NewsCard} from '../../components';
+import Loading from '../../components/atoms/Loading';
 
 const Disease = () => {
   const [data, setData] = useState([]);
@@ -37,6 +38,11 @@ const Disease = () => {
         Alert.alert(err);
       });
   }, []);
+
+  if (!data || data.length < 1) {
+    return <Loading />;
+  }
+
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>

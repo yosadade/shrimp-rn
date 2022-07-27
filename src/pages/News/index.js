@@ -5,6 +5,7 @@ import Axios from 'axios';
 import {colors} from '../../utils';
 import {Gap, NewsCard} from '../../components';
 import {API_HOST} from '../../config/API';
+import Loading from '../../components/atoms/Loading';
 
 const News = () => {
   const [data, setData] = useState([]);
@@ -38,13 +39,16 @@ const News = () => {
       });
   }, []);
 
+  if (!data || data.length < 1) {
+    return <Loading />;
+  }
+
   return (
     <View style={styles.pages}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>Kabar Terbaru</Text>
         <Gap height={12} />
         {data.map((item, idx) => {
-          console.log(item.id);
           return (
             <NewsCard
               key={idx}

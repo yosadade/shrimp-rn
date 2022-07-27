@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {colors} from '../../utils';
 import {Gap, PriceCard} from '../../components';
 import {API_HOST} from '../../config/API';
+import Loading from '../../components/atoms/Loading';
 
 const Price = () => {
   const [data, setData] = useState(data);
@@ -23,6 +24,11 @@ const Price = () => {
         Alert.alert(statusErr);
       });
   }, []);
+
+  if (!data || data.length < 1) {
+    return <Loading />;
+  }
+
   return (
     <View style={styles.pages}>
       <ScrollView showsVerticalScrollIndicator={false}>
