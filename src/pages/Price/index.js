@@ -16,7 +16,7 @@ const Price = () => {
     )
       .then(res => {
         const fetchData = res.data.data;
-        console.log(fetchData[0].creator);
+        console.log(fetchData[0]);
         setData(fetchData);
       })
       .catch(err => {
@@ -30,17 +30,18 @@ const Price = () => {
         <Text style={styles.title}>Harga Terbaru</Text>
         <Gap height={12} />
         {data?.map((item, idx) => {
+          const {id, created_at, creator, region, size_100} = item;
           return (
             <PriceCard
               key={idx}
-              verified={item.creator.phone_verified}
-              company={item.creator.company}
-              avatar={item.creator.avatar}
-              date={item.created_at}
-              province={item.region.province_name}
-              regency={item.region.regency_name}
-              price={item.size_100}
-              onPress={() => navigation.navigate('PriceDetail', item)}
+              verified={creator.buyer}
+              company={creator.company}
+              avatar={creator.avatar}
+              date={created_at}
+              province={region.province_name}
+              regency={region.regency_name}
+              price={size_100}
+              onPress={() => navigation.navigate('PriceDetail', id)}
             />
           );
         })}

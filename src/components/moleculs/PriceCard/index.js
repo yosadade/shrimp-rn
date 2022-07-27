@@ -1,7 +1,7 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import moment from 'moment';
-import 'moment/locale/id'; // without this line it didn't work
+import 'moment/locale/id';
 import {colors} from '../../../utils';
 import {Gap, Button, Badge} from '../..';
 
